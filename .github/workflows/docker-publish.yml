@@ -99,4 +99,5 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      run: docker build ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main
+      - name: test
+        run: docker build ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main
