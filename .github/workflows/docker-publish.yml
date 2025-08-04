@@ -100,4 +100,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: test
-        run: docker run ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main | grep 'container' && echo "TEST PASSED!"
+        run: |
+          if docker run ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main | grep -q 'container'; then
+            echo "PASSED"
+          else
+            echo "FAILED"
+            exit 1
+          fi
